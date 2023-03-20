@@ -17,7 +17,7 @@
 USE mobale
 CREATE TABLE mobale_phones (
   id_phone INT NOT NULL AUTO_INCREMENT,
-  product_name VARCHAR(45) NOT NULL DEFAULT unknow,
+  product_name VARCHAR(45) NOT NULL DEFAULT 'unknow',
   manufacturer VARCHAR(45) NOT NULL DEFAULT 'unknow',
   product_count INT NOT NULL DEFAULT 0,
   price INT NOT NULL DEFAULT 0,
