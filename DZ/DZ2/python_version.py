@@ -47,9 +47,7 @@ try:
                 cursor.execute(f'DROP database {base_name}')
                 connection.commit()
             cursor.execute(f'CREATE database {base_name}')
-            connection.commit()
             cursor.execute(f'USE {base_name}')
-            connection.commit()
             cursor.execute('''
                             CREATE TABLE sales(
                             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -57,7 +55,6 @@ try:
                             count_product int default 0)
                             '''
                            )
-            connection.commit()
             cursor.execute('''
                             INSERT INTO sales(order_date, count_product)
                             values ('2022-01-01', 156),
@@ -67,7 +64,6 @@ try:
                                 ('2020-01-05', 341)
                             '''
                            )
-            connection.commit()
             cursor.execute('''
                             SELECT id AS 'id заказа',
                             CASE
@@ -88,8 +84,7 @@ try:
                                 order_status varchar(9)
                            )
                             '''
-                           )
-            connection.commit()
+                           )            
             cursor.execute('''
                             INSERT INTO orders(employee_id, amount, order_status)
                             values ('e03', 15.00, 'OPEN'),
@@ -98,8 +93,7 @@ try:
                                 ('e02', 22.18, 'OPEN'),
                                 ('e04', 9.50, 'CANCELLED')
                             '''
-                           )
-            connection.commit()
+                           )            
             cursor.execute('''
                             SELECT id AS 'id заказа',
                                 employee_id AS 'Employee',
