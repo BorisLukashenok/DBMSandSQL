@@ -1,23 +1,22 @@
 from mysql.connector import connect, Error
-from getpass import getpass
 
 
-def print_table(data, columns, indent=1):
+
+def print_table(data, head, indent=1):
 
     # расчёт макимальной ширины колонок таблицы
     width = [max([len(el) for el in map(str, col)]) + 2 *
-             indent for col in zip(*(data + [columns]))]
-    width_table = sum(width) + len(columns) + 1
+             indent for col in zip(*(data + [head]))]
+    width_table = sum(width) + len(head) + 1
     # печать шапки таблицы
     print('-' * width_table)
-    for i, col in enumerate(columns):
+    for i, col in enumerate(head):
         print(f'|{col:^{width[i]}}', end='')
     print('|')
     print('-' * width_table)
     # печать тела таблицы
     for el in data:
         for i, col in enumerate(el):
-            # выравнвание по правому краю
             print(f'|{col:>{width[i] - indent}}{" " * indent}', end='')
         print('|')
     print('-' * width_table)
@@ -27,8 +26,8 @@ user = input(
     "Подключение к серверу.\nВведите имя пользователя(root по умолчанию): ")
 if not user:
     user = 'root'
-password = getpass("Введите пароль: ")
-password = "rfhfgtn"
+password = input("Введите пароль: ")
+
 # Добавить ручной ввод навание базы и запрос на удаление если существует
 base_name = 'product'
 
