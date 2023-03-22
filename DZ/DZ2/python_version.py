@@ -1,12 +1,13 @@
 from mysql.connector import connect, Error
 
-
+def head(data):
+    return [i[0] for i in data]
 
 def print_table(data, head, indent=1):
 
     # расчёт макимальной ширины колонок таблицы
     width = [max([len(el) for el in map(str, col)]) + 2 *
-             indent for col in zip(*(data + [head]))]
+             indent for col in zip(*data, head)]
     width_table = sum(width) + len(head) + 1
     # печать шапки таблицы
     print('-' * width_table)
@@ -75,7 +76,8 @@ try:
                             FROM sales
                             '''
                            )
-            print_table(cursor.fetchall(), ['Id заказа', 'Тип заказа'])
+            
+            print_table(cursor.fetchall(), head(cursor.description))
             cursor.execute('''
                             CREATE TABLE orders(
                                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -106,7 +108,7 @@ try:
                             FROM orders
                             '''
                            )
-            print_table(cursor.fetchall(), ['Id заказа', 'Employee ID', 'full_order_status'])
+            print_table(cursor.fetchall(), head(cursor.description))
 
 except Error as e:
     print(e)
