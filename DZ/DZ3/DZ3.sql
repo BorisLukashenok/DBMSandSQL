@@ -48,7 +48,7 @@ SELECT post, SUM(salary) AS 'Total_Solary' FROM staff GROUP BY post;
 
 -- Найдите кол-во сотрудников с специальностью (post) «Рабочий» в возрасте от 24 до 49 лет включительно.
 SELECT COUNT(*) AS 'Кол-во рабочих в возрасте от 24 до 49 лет включительно'
-FROM staff WHERE age BETWEEN 24 AND 49;
+FROM staff WHERE age BETWEEN 24 AND 49 AND post = 'Рабочий';
 
 -- Найдите количество специальностей
 SELECT COUNT(DISTINCT post) AS 'Кол-во специальностей' FROM staFF;
