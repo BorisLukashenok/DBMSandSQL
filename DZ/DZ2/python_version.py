@@ -1,4 +1,5 @@
 from mysql.connector import connect, Error
+from getpass import getpass
 
 def head(data):
     return [i[0] for i in data]
@@ -27,7 +28,7 @@ user = input(
     "Подключение к серверу.\nВведите имя пользователя(root по умолчанию): ")
 if not user:
     user = 'root'
-password = input("Введите пароль: ")
+password = getpass("Введите пароль: ")
 
 # Добавить ручной ввод навание базы и запрос на удаление если существует
 base_name = 'product'
